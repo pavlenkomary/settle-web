@@ -80,7 +80,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
 		reply_markup=InlineKeyboardMarkup.from_button(
 			InlineKeyboardButton(
 				text="Click to connect wallet"),
-				web_app=WebAppInfo(url="https://settle-oxford.vercel.app/"),
+				web_app=WebAppInfo(url="https://settle-web.vercel.app/"),
 			)
 		)
 		# Keyboard here
@@ -191,7 +191,7 @@ async def ask(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 			InlineKeyboardButton(
 				text="Connect wallet here!",
 				#web_app=WebAppInfo(url="https://app.uniswap.org/#/swap?exactField=input&exactAmount=0.8&inputCurrency=ETH&outputCurrency=0x7Fc66500c84A76Ad7e9c93437bFc5Ac33E2DDaE9"),
-				web_app=WebAppInfo(url="https://settle-oxford.vercel.app/"),
+				web_app=WebAppInfo(url="https://settle-web.vercel.app/"),
 			)
 		),
 	)
@@ -223,7 +223,7 @@ async def connect(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 		reply_markup=ReplyKeyboardMarkup.from_button(
 			KeyboardButton(
 				text="Connect wallet here!",
-				web_app=WebAppInfo(url="https://settle-oxford.vercel.app/"),
+				web_app=WebAppInfo(url="https://settle-web.vercel.app/"),
 			)
 		),
 	)
