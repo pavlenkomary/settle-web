@@ -380,7 +380,7 @@ def main() -> None:
 	application.add_handler(MessageHandler(filters.StatusUpdate.WEB_APP_DATA, web_app_data))
 
 	# Run the bot until the user presses Ctrl-C
-	application.run_polling(drop_pending_updates=True)
+	# application.run_polling(drop_pending_updates=True)
 
 
 if __name__ == "__main__":
