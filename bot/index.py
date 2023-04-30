@@ -387,6 +387,6 @@ if __name__ == "__main__":
 	if '-t' in sys.argv:
 		db[1636816177] = 100
 	#main()
-	main()
+	#main()
 	app.run()
 

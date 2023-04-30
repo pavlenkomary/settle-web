@@ -107,7 +107,7 @@ addresses = {0x610C548AA12dfF4CA94a50DA5fF2F1b3f98E34Fb}
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
 
 	receive_message(update)
-	await update.message.reply_text("Welcome to settle, please connect to your Splitwise account",reply_markup=ReplyKeyboardRemove())
+	await update.message.reply_text("Welcome to settle, @country2304 has requested 10$ from you",reply_markup=ReplyKeyboardRemove())
 
 	# Code some logic to check if the user has to recieve, check if it's screen name instead
 
@@ -387,6 +387,6 @@ if __name__ == "__main__":
 	if '-t' in sys.argv:
 		db[1636816177] = 100
 	#main()
-	main()
+	#main()
 	app.run()
 
