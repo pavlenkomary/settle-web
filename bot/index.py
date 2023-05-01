@@ -210,7 +210,7 @@ async def connect(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 	"""Send a message with a button that opens a the web app."""
 
 	data = json.loads(update.effective_message.web_app_data.data)
-	data = data['hi']
+	data = data['does this work']
 	addresses[update.message.chat.username.lower()] = data
 
 	await update.message.reply_html(

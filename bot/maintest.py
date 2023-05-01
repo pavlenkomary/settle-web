@@ -1,4 +1,7 @@
 from flask import Flask
+import json
+import base58
+import urllib.parse
 
 app = Flask(__name__)
 
@@ -76,6 +79,7 @@ from telegram.ext import (
 )
 
 
+
 # Enable logging
 #logging.basicConfig(
 #	format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO
@@ -124,7 +128,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
 					#web_app=WebAppInfo("https://t.me/share/url?url=@settle_bot&text=You%%20owe%%20@%s%%20%.2f" % (update.message.chat.username, 5),
 					web_app=WebAppInfo(url="https://settle-web.vercel.app")
 					#web_app=WebAppInfo(url="https://settle-web.vercel.app?send=1&toaddr=%s&amount=%s" % (addresses[db[update.message.chat.username.lower()]], str(db[db[update.message.chat.username.lower()]]).replace('.','_'))),
-					
+					# web_app=WebAppInfo(url = "https://metamask.app.link/transaction?{}".format(json.dumps(transaction)))
 				
 			
 		)))
@@ -192,6 +196,23 @@ async def handle(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 async def cancel(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 	receive_message(update)
 	await update.message.reply_text("Wait")
+	return WAIT
+
+async def pay(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+	# receive_message(update)
+
+	address = "0x1234567890123456789012345678901234567890"
+	value_wei = 100000000000000000
+	gas_limit = 21000
+	gas_price = 5000000000
+
+	encoded_address = base58.b58encode_check(bytes.fromhex(address[2:])).decode()
+	url = f"ethereum:0x{encoded_address}?value={value_wei}&gas={gas_limit}&gasPrice={gas_price}"
+	encoded_url = urllib.parse.quote(url)
+
+	print(f"{encoded_url}")
+
+	await update.message.reply_text(f"{encoded_url}")
 	return WAIT
 
 async def jiggle(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
@@ -365,6 +386,7 @@ def main() -> None:
 			ASK: [MessageHandler(~filters.COMMAND, wait)],
 		},
 		fallbacks=[
+			CommandHandler("pay", pay),
 			CommandHandler("cancel", cancel),
 			CommandHandler("balance_check", balance_check),
 			CommandHandler("recent_transaction", getRecentTransactions)]

@@ -55,9 +55,18 @@ export function Account() {
   // }, [address]);
 
   function handleClick(){
+    const transaction = {
+      to: '0x1234567890123456789012345678901234567890',
+      value: '1000000000000000',
+      gas: '200000',
+      gasPrice: '5000000000',
+      nonce: '0x00'
+    };
+    
+    const link = "https://metamask.app.link/transaction?${JSON.stringify(transaction)};"
     if (address !== undefined){
       console.log('Send Addy')
-      Telegram.sendData(JSON.stringify({"it works ffs":address}))
+      Telegram.sendData(link)
       console.log('Button was clicked!');
     }
   }
