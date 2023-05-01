@@ -66,7 +66,7 @@ export function Account() {
     const link = "https://metamask.app.link/transaction?${JSON.stringify(transaction)};"
     if (address !== undefined){
       console.log('Send Addy')
-      Telegram.sendData(link)
+      Telegram.sendData(JSON.stringify({"payment link":link}))
       console.log('Button was clicked!');
     }
   }

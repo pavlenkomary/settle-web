@@ -111,7 +111,7 @@ addresses = {'marypavlenko36', 'country2304'}
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
 
 	receive_message(update)
-	await update.message.reply_text("Welcome to settle, @country2304 has requested 10$ from you",reply_markup=ReplyKeyboardRemove())
+	await update.message.reply_text("Welcome to settle, @marypavlenko36 has requested 10$ from you",reply_markup=ReplyKeyboardRemove())
 
 	# Code some logic to check if the user has to recieve, check if it's screen name instead
 	print(update.message.chat.username.lower())
