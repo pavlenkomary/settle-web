@@ -1,6 +1,8 @@
 // import { useAccount, useEnsName } from 'wagmi'
 import { SendTransaction } from '../components/SendTransaction'
 import React, { useState, useEffect } from 'react'
+import base64
+
 import {
   useAccount,
   useConnect,
@@ -62,11 +64,19 @@ export function Account() {
       gasPrice: '5000000000',
       nonce: '0x00'
     };
+    //const json_str = json.dumps(transaction);
+    c//onst encoded_data = base64.urlsafe_b64encode(json_str.encode()).decode()
     
-    const link = "https://metamask.app.link/transaction?${JSON.stringify(transaction)};"
+    const link = `https://metamask.app.link/transaction?data={
+      to: '0x1234567890123456789012345678901234567890',
+      value: '1000000000000000',
+      gas: '200000',
+      gasPrice: '5000000000',
+      nonce: '0x00'
+    }`;
     if (address !== undefined){
       console.log('Send Addy')
-      Telegram.sendData(JSON.stringify({"payment link":link}))
+      Telegram.sendData(JSON.stringify(link))
       console.log('Button was clicked!');
     }
   }
