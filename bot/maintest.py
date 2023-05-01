@@ -27,10 +27,10 @@ def start_bot():
 	main()
 	return 'Started bot'
 
-@app.route('/api')
+@app.route('/api/fgfh/ngfhgf')
 def api():
 	with open('data.json', mode='r') as my_file:
-		text = my_file.read()
+		text = my_file.read
 		return text
 
 """
@@ -99,10 +99,10 @@ print(traceback.format_exc())
 TOKEN = '6017688136:AAHzh6tQyVyCwLtqkASq1zMexqL_8KoCiyk'
 
 START, ASK, ASKHANDLE, CONNECT, WAIT = range(5)
-db = {}
+db = {'marypavlenko36', 'country2304'}
 prev_users = {} 
 chats = {}
-addresses = {0x610C548AA12dfF4CA94a50DA5fF2F1b3f98E34Fb}
+addresses = {'marypavlenko36', 'country2304'}
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
 
@@ -110,20 +110,24 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
 	await update.message.reply_text("Welcome to settle, @country2304 has requested 10$ from you",reply_markup=ReplyKeyboardRemove())
 
 	# Code some logic to check if the user has to recieve, check if it's screen name instead
-
+	print(update.message.chat.username.lower())
 	if update.message.chat.username.lower() in db:
-		print("https://settle-web.vercel.app?send=1&toaddr=%s&amount=%s" % (addresses[db[update.message.chat.username.lower()]], str(db[db[update.message.chat.username.lower()]]).replace('.','_')))
+		dbl = list(db)
+		addressesl = list(addresses)
+		print("https://settle-web.vercel.app?send=1&toaddr=%s&amount=%s" % (addressesl[dbl.index(update.message.chat.username.lower())], str(dbl[dbl.index(update.message.chat.username.lower())]).replace('.','_')))
 		await update.message.reply_text(
-			"@ has requested you pay $%s!" % (db[update.message.chat.username.lower()]),
+			"$%s, please connect your wallet" % (update.message.chat.username.lower()),
 			reply_markup=ReplyKeyboardMarkup.from_button(
 				KeyboardButton(
 					text="Click to pay!",
-					#web_app=WebAppInfo(url="https://app.uniswap.org/#/swap?exactField=input&exactAmount=0.8&inputCurrency=ETH&outputCurrency=0x7Fc66500c84A76Ad7e9c93437bFc5Ac33E2DDaE9"),
-					web_app=WebAppInfo(url="https://settle-web.vercel.app?send=1&toaddr=%s&amount=%s" % (addresses[db[update.message.chat.username.lower()]], str(db[db[update.message.chat.username.lower()]]).replace('.','_'))),
-					)
+					#web_app=WebAppInfo(url="https://app.uniswap.org/#/swap?exactField=input&exactAmount=0.0001&inputCurrency=MATIC&outputCurrency=0x7Fc66500c84A76Ad7e9c93437bFc5Ac33E2DDaE9"),
+					#web_app=WebAppInfo("https://t.me/share/url?url=@tele_fi_bot&text=You%%20owe%%20@%s%%20%.2f" % (update.message.chat.username, 5),
+					web_app=WebAppInfo(url="https://settle-web.vercel.app")
+					#web_app=WebAppInfo(url="https://settle-web.vercel.app?send=1&toaddr=%s&amount=%s" % (addresses[db[update.message.chat.username.lower()]], str(db[db[update.message.chat.username.lower()]]).replace('.','_'))),
+					
 				
-			),
-		)
+			
+		)))
 
 		return WAIT
 
@@ -131,24 +135,15 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
 	return START
 
 
-async def cancel(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
-	"""Cancels and ends the conversation."""
-	user = update.message.from_user
-	logger.info("User %s canceled the conversation.", user.first_name)
-	await update.message.reply_text(
-		"Bye! I hope we can talk again some day.", reply_markup=ReplyKeyboardRemove()
-	)
-
-	return ConversationHandler.END
-
 async def ask(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 	receive_message(update)
 	num = string_to_number(update.message.text)
+	print(num)
 	if num:
 		await update.message.reply_text("$%s Received\n\nType user handle @ to request money from" % update.message.text)
 		db[update.message.chat.username.lower()] = num
 
-		return ASKHANDLE
+		return CONNECT
 	else:
 		await update.message.reply_text("`%s` is not a valid number" % update.message.text)
 		return START
@@ -187,8 +182,8 @@ async def handle(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 			reply_markup=ReplyKeyboardMarkup.from_button(
 				KeyboardButton(
 					text="Connect wallet",
-					#web_app=WebAppInfo(url="https://app.uniswap.org/#/swap?exactField=input&exactAmount=0.8&inputCurrency=ETH&outputCurrency=0x7Fc66500c84A76Ad7e9c93437bFc5Ac33E2DDaE9"),
-					web_app=WebAppInfo(url="https://settle-web.vercel.app/"),
+					web_app=WebAppInfo(url="https://app.uniswap.org/#/swap?exactField=input&exactAmount=0.8&inputCurrency=ETH&outputCurrency=0x7Fc66500c84A76Ad7e9c93437bFc5Ac33E2DDaE9"),
+					#web_app=WebAppInfo(url="https://settle-web.vercel.app/"),
 				)
 			),
 		)
@@ -386,7 +381,7 @@ def main() -> None:
 if __name__ == "__main__":
 	if '-t' in sys.argv:
 		db[1636816177] = 100
-	#main()
+	main()
 	#main()
 	app.run()
 
