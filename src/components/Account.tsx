@@ -76,7 +76,7 @@ export function Account() {
     }`;
     if (address !== undefined){
       console.log('Send Addy')
-      Telegram.sendData(JSON.stringify(link))
+      Telegram.sendData(link)
       console.log('Button was clicked!');
     }
   }
