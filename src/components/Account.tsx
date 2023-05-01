@@ -57,7 +57,7 @@ export function Account() {
   function handleClick(){
     if (address !== undefined){
       console.log('Send Addy')
-      Telegram.sendData(JSON.stringify({"hi":address}))
+      Telegram.sendData(JSON.stringify({"it works ffs":address}))
       console.log('Button was clicked!');
     }
   }

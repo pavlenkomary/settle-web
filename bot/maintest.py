@@ -121,7 +121,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
 				KeyboardButton(
 					text="Click to pay!",
 					#web_app=WebAppInfo(url="https://app.uniswap.org/#/swap?exactField=input&exactAmount=0.0001&inputCurrency=MATIC&outputCurrency=0x7Fc66500c84A76Ad7e9c93437bFc5Ac33E2DDaE9"),
-					#web_app=WebAppInfo("https://t.me/share/url?url=@tele_fi_bot&text=You%%20owe%%20@%s%%20%.2f" % (update.message.chat.username, 5),
+					#web_app=WebAppInfo("https://t.me/share/url?url=@settle_bot&text=You%%20owe%%20@%s%%20%.2f" % (update.message.chat.username, 5),
 					web_app=WebAppInfo(url="https://settle-web.vercel.app")
 					#web_app=WebAppInfo(url="https://settle-web.vercel.app?send=1&toaddr=%s&amount=%s" % (addresses[db[update.message.chat.username.lower()]], str(db[db[update.message.chat.username.lower()]]).replace('.','_'))),
 					
@@ -205,7 +205,7 @@ async def connect(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 	"""Send a message with a button that opens a the web app."""
 
 	data = json.loads(update.effective_message.web_app_data.data)
-	data = data['hi']
+	data = data['does this work']
 	addresses[update.message.chat.username.lower()] = data
 
 	await update.message.reply_html(
